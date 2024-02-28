@@ -7,7 +7,7 @@ namespace PragmaGoTech\Interview;
 use PragmaGoTech\Interview\Enums\Multiplier;
 use PragmaGoTech\Interview\Exception\AmountException;
 use PragmaGoTech\Interview\Exception\TermException;
-use PragmaGoTech\Interview\Model\InterpolationSchemaModelInterface;
+use PragmaGoTech\Interview\Model\InterpolationPreConditionModelInterface;
 use PragmaGoTech\Interview\Model\LoanProposal;
 use PragmaGoTech\Interview\Model\CalculationResultModel;
 use PragmaGoTech\Interview\Service\Calculator\FeeInterpolationCalculator;
@@ -32,7 +32,7 @@ final class FeeCalculator implements FeeCalculatorInterface
         if ($foundedFee === NULL) {
             $foundedFee = $this->calculateInterpolation(
                 $application,
-                $dataStorage->getInterpolationSchemaModel($application->amount()),
+                $dataStorage->getInterpolationPreConditionModel($application->amount()),
             );
         }
 
@@ -42,11 +42,11 @@ final class FeeCalculator implements FeeCalculatorInterface
     }
 
     private function calculateInterpolation(
-        LoanProposal                      $application,
-        InterpolationSchemaModelInterface $interpolationSchemaModel,
+        LoanProposal                            $application,
+        InterpolationPreConditionModelInterface $interpolationPreConditionModel,
     ): float
     {
-        return (new FeeInterpolationCalculator($application->amount(), $interpolationSchemaModel))->calculate();
+        return (new FeeInterpolationCalculator($application->amount(), $interpolationPreConditionModel))->calculate();
     }
 
     private function multiplyValue(float $amount, Multiplier $multiplier): float

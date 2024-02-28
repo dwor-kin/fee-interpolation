@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace PragmaGoTech\Interview\Service\Storage;
 
-use PragmaGoTech\Interview\Model\InterpolationSchemaModel;
-use PragmaGoTech\Interview\Model\InterpolationSchemaModelInterface;
+use PragmaGoTech\Interview\Model\InterpolationPreConditionModel;
+use PragmaGoTech\Interview\Model\InterpolationPreConditionModelInterface;
 
 readonly class DataStorage implements DataStorageInterface
 {
@@ -23,7 +23,7 @@ readonly class DataStorage implements DataStorageInterface
             : null;
     }
 
-    public function getInterpolationSchemaModel(float $amount): InterpolationSchemaModelInterface
+    public function getInterpolationPreConditionModel(float $amount): InterpolationPreConditionModelInterface
     {
         $filteredKeys = array_filter(array_keys($this->data), function ($key) use ($amount) {
             return $key <= $amount;
@@ -32,7 +32,7 @@ readonly class DataStorage implements DataStorageInterface
         $lowerBreakPointValue = max($filteredKeys);
         $upperBreakPointValue = min(array_diff(array_keys($this->data), $filteredKeys));
 
-        return new InterpolationSchemaModel(
+        return new InterpolationPreConditionModel(
             $lowerBreakPointValue,
             $upperBreakPointValue,
             $this->data[$lowerBreakPointValue],

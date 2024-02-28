@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PragmaGoTech\Interview\Model;
 
-interface InterpolationSchemaModelInterface
+interface InterpolationPreConditionModelInterface
 {
     public function getLowerAmount(): int;
 

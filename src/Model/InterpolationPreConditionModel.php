@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PragmaGoTech\Interview\Model;
 
-readonly final class InterpolationSchemaModel implements InterpolationSchemaModelInterface
+readonly final class InterpolationPreConditionModel implements InterpolationPreConditionModelInterface
 {
     public function __construct(
         private readonly int $lowerAmount,

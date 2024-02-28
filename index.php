@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 require (__DIR__. '/vendor/autoload.php');
 
-echo __DIR__;
-
 use PragmaGoTech\Interview\Enums\Term;
 use PragmaGoTech\Interview\FeeCalculator;
 use PragmaGoTech\Interview\Model\LoanProposal;
