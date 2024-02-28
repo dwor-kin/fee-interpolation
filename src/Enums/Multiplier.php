@@ -6,7 +6,6 @@ namespace PragmaGoTech\Interview\Enums;
 
 enum Multiplier: int
 {
-   case M1 = 1;
    case M2 = 2;
    case M3 = 3;
    case M4 = 4;

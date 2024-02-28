@@ -9,7 +9,7 @@ use PragmaGoTech\Interview\Exception\AmountException;
 use PragmaGoTech\Interview\Exception\TermException;
 use PragmaGoTech\Interview\Model\InterpolationSchemaModelInterface;
 use PragmaGoTech\Interview\Model\LoanProposal;
-use PragmaGoTech\Interview\Model\ResultModel;
+use PragmaGoTech\Interview\Model\CalculationResultModel;
 use PragmaGoTech\Interview\Service\Calculator\FeeInterpolationCalculator;
 use PragmaGoTech\Interview\Service\Calculator\ValueMultiplier;
 use PragmaGoTech\Interview\Service\Storage\JsonDataLoader;
@@ -21,7 +21,7 @@ final class FeeCalculator implements FeeCalculatorInterface
      * @throws AmountException
      * @throws TermException
      */
-    public function calculate(LoanProposal $application): ResultModel
+    public function calculate(LoanProposal $application): CalculationResultModel
     {
         (new LoanValidator($application))->validate();
 
@@ -38,7 +38,7 @@ final class FeeCalculator implements FeeCalculatorInterface
 
         $total = $this->multiplyValue($application->amount() + $foundedFee, Multiplier::M5);
 
-        return new ResultModel($application->amount(), $application->term(), $foundedFee, $total);
+        return new CalculationResultModel($application->amount(), $application->term(), $foundedFee, $total);
     }
 
     private function calculateInterpolation(

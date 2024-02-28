@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace PragmaGoTech\Interview;
 
 use PragmaGoTech\Interview\Model\LoanProposal;
-use PragmaGoTech\Interview\Model\ResultModel;
+use PragmaGoTech\Interview\Model\CalculationResultModel;
 
 interface FeeCalculatorInterface
 {
     /**
-     * @return float The calculated total fee.
+     * @return CalculationResultModel model that contains amount, fee, term and total calculation
      */
-    public function calculate(LoanProposal $application): ResultModel;
+    public function calculate(LoanProposal $application): CalculationResultModel;
 }

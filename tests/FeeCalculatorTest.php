@@ -21,10 +21,10 @@ class FeeCalculatorTest extends TestCase
     public static function properLoanPropositions(): array
     {
         return [
+            [3000.00, Term::T12, 3090.0],
             [4000.50, Term::T12, 4115.0],
             [15000.00, Term::T24, 15600.0],
-            [1000.0, Term::T12, 1050.0],
-            [20000.0, Term::T12, 20400.0],
+            [15750.50, Term::T24, 16380.0],
             [7500.50, Term::T24, 7800.0],
             [11500.00, Term::T24, 11960.0],
         ];
@@ -51,11 +51,13 @@ class FeeCalculatorTest extends TestCase
     /**
      * @dataProvider properLoanPropositions
      */
-    public function testCalculateFeesForSelectedAmountAndTerm(float $amount, Term $term, float $expected)
+    public function testCalculateFeesForSelectedAmountAndTerm(float $amount, Term $term, float $expectedTotal)
     {
         $loanProposal = new LoanProposal($term, $amount);
-        $calculatedFee = $this->calculator->calculate($loanProposal);
-        $this->assertEquals($expected, $calculatedFee);
+        $calculationResultModel = $this->calculator->calculate($loanProposal);
+        $this->assertEquals($expectedTotal, $calculationResultModel->getTotal());
+        $this->assertEquals($amount, $calculationResultModel->getAmount());
+        $this->assertEquals($term->value, $calculationResultModel->getTerm()->value);
     }
 
     /**

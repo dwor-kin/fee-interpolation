@@ -18,8 +18,6 @@ readonly class DataStorage implements DataStorageInterface
         $keys = array_keys($this->data);
         $index = array_search($amount, $keys);
 
-        var_dump($index);
-
         return ($index !== false)
             ? $this->data[$keys[$index]]
             : null;
